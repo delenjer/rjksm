@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import ReactPaginate from 'react-paginate';
 import { useDispatch } from 'react-redux';
 
-import { setLoadItem } from '../store/collectionsReducer/actions';
+import { setLoadItemsOnPage } from '../store/collectionsReducer/actions';
 
-export const Footer = ({ isLoading, pagesCount, handlePageClick }) => {
+export const Footer = (
+  {
+    isLoading,
+    pagesCount,
+    handlePageClick,
+  },
+) => {
   const dispatch = useDispatch();
 
+  const btn = document.querySelectorAll('.load-item__btn');
+
   const handleLoadItem = (e) => {
-    dispatch(setLoadItem(+e.target.innerHTML));
+    btn.forEach((item) => {
+      if (item === e.target) {
+        item.classList.add('active-btn');
+      } else {
+        item.classList.remove('active-btn');
+      }
+    });
+
+    dispatch(setLoadItemsOnPage(+e.target.innerHTML));
   };
 
   return (
@@ -34,10 +50,10 @@ export const Footer = ({ isLoading, pagesCount, handlePageClick }) => {
         activeClassName="active"
       />
 
-      <div className="load-item">
+      <div className="load-items">
         <button
           type="button"
-          className="load-item__btn"
+          className="load-items__btn active-btn"
           onClick={handleLoadItem}
         >
           10
@@ -45,7 +61,7 @@ export const Footer = ({ isLoading, pagesCount, handlePageClick }) => {
 
         <button
           type="button"
-          className="load-item__btn"
+          className="load-items__btn"
           onClick={handleLoadItem}
         >
           50
@@ -53,7 +69,7 @@ export const Footer = ({ isLoading, pagesCount, handlePageClick }) => {
 
         <button
           type="button"
-          className="load-item__btn"
+          className="load-items__btn"
           onClick={handleLoadItem}
         >
           100

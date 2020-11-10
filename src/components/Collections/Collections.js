@@ -45,6 +45,7 @@ export const Collections = () => {
         {...isLoading}
         handlePageClick={handlePageClick}
         pagesCount={pagesCount}
+        pageSize={pageSize}
       />
     </>
   );

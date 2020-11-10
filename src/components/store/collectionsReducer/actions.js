@@ -12,7 +12,7 @@ export const setCurrentPage = num => ({
   num,
 });
 
-export const setLoadItem = num => ({
+export const setLoadItemsOnPage = num => ({
   type: SET_LOAD_ITEM,
   num,
 });
