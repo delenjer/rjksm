@@ -3,15 +3,20 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createSelector } from 'reselect';
 import thunk from 'redux-thunk';
 
-// eslint-disable-next-line max-len
+/*eslint-disable */
 import collectionsReducer, * as selectorsCollections from './collectionsReducer/index';
 import loadReducer, * as selectorsIsLoading from './loadReducer/index';
+import infoReducer, * as selectorsInfo from './infoPopupReducer/index';
+/* eslint-enable */
 
 const getCollections = state => selectorsCollections
   .getCollections(state.collections);
 
 export const getLoading = state => selectorsIsLoading
   .getLoading(state.isLoading);
+
+export const getInfo = state => selectorsInfo
+  .getInfo(state.info);
 
 export const getCollection = createSelector(
   [getCollections],
@@ -29,6 +34,7 @@ export const getCollection = createSelector(
 const rootReducer = combineReducers({
   collections: collectionsReducer,
   isLoading: loadReducer,
+  info: infoReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(

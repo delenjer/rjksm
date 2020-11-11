@@ -1,6 +1,17 @@
-// eslint-disable-next-line max-len
-export const getImg = (currentPage, pageSize) => fetch(`https://www.rijksmuseum.nl/api/nl/collection?key=a7LmWCcH&ps=${pageSize}&p=${currentPage}`)
-  .then(response => response.json())
-  .then(data => data);
+import axios from 'axios';
 
-// &ps=50&p=1
+const BASE_URL = 'https://www.rijksmuseum.nl/api/en/collection?key=a7LmWCcH';
+
+const instance = axios.create({
+  responseType: 'json',
+});
+
+export const getCollectionsPictures = (currentPage, pageSize) => instance
+  .get(`${BASE_URL}&ps=${pageSize}&p=${currentPage}`)
+  .then(resp => resp.data);
+
+export const getInfo = id => instance
+  .get(`https://www.rijksmuseum.nl/api/en/collection/${id}?key=a7LmWCcH`)
+  .then(resp => resp.data);
+
+// &ps=${pageSize}&p=${currentPage}

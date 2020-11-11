@@ -1,0 +1,28 @@
+.details {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+
+  .wrapper {
+    margin-bottom: 0;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    padding-top: 1rem;
+  }
+
+  &__content {
+    margin-top: 2rem;
+    clear: both;
+  }
+
+  &__img {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+    float: left;
+    padding-right: 1rem;
+  }
+}

@@ -1,12 +1,24 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import { Collections } from './components/Collections/Collections';
+import { ModalContainer } from 'react-router-modal';
+import { Home } from './components/Home/Home';
+import { PopupInfo } from './components/PopupInfo/PopupInfo';
+import { Details } from './components/Details/Details';
 
 import './App.scss';
+// import 'react-router-modal/css/react-router-modal.css';
 
 const App = () => (
   <>
-    <Collections />
+    <Switch>
+      <Route exact path="/" component={Home} />
+
+      <Route path="/:id/modal" component={PopupInfo} />
+      <Route path="/:id" component={Details} />
+    </Switch>
+
+    <ModalContainer />
   </>
 );
 

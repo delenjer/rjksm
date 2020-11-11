@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const CollectionItem = ({ art }) => (
   <Link
-    to="/"
+    to={`/${art.objectNumber}/modal`}
     className="collection__item"
     style={{ backgroundImage: `url(${art.headerImage.url})` }}
   >

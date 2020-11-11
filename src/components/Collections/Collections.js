@@ -31,11 +31,9 @@ export const Collections = () => {
     <>
       {
         !isLoading.isLoading ? (
-          <>
-            <main className="wrapper">
-              <CollectionList {...collections} />
-            </main>
-          </>
+          <main className="wrapper">
+            <CollectionList {...collections} />
+          </main>
         ) : (
           <div className="loader">Loading...</div>
         )
