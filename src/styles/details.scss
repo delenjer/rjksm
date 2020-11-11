@@ -1,7 +1,8 @@
 .details {
   background-color: #000;
   color: #fff;
-  min-height: 100vh;
+  //height: 100%;
+  padding: 2rem 0;
 
   .wrapper {
     margin-bottom: 0;
@@ -14,15 +15,34 @@
   }
 
   &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-top: 2rem;
-    clear: both;
   }
 
   &__img {
     width: 50%;
     height: auto;
     object-fit: contain;
-    float: left;
     padding-right: 1rem;
+  }
+
+  &__list {
+    margin: 1rem 0 0 1rem;
+  }
+
+  &__item {
+    font-style: italic;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &--title {
+      font-style: normal;
+      font-weight: 700;
+      padding-right: 1rem;
+    }
   }
 }
