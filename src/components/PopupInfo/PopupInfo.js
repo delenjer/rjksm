@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Home } from '../Home/Home';
 import * as selectors from '../store/store';
 import { loadInfo } from '../store/thunk/thunk';
+import { setFavorite } from '../store/favoriteReducer/actions';
 
 export const PopupInfo = () => {
   // eslint-disable-next-line no-unused-vars
@@ -20,6 +21,12 @@ export const PopupInfo = () => {
   useEffect(() => {
     dispatch(loadInfo(id));
   }, []);
+
+  const addFavorite = (e, idObj) => {
+    e.preventDefault();
+
+    dispatch(setFavorite(idObj));
+  };
 
   return (
     <>
@@ -57,7 +64,9 @@ export const PopupInfo = () => {
                     <div className="popup__btn-box">
                       <button
                         type="button"
-                        onClick={() => {}}
+                        onClick={(e) => {
+                          addFavorite(e, artObject.objectNumber);
+                        }}
                         className="popup__btn popup__btn--favorite"
                       >
                         Add to fav list

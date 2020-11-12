@@ -8,6 +8,7 @@ import collectionsReducer, * as selectorsCollections from './collectionsReducer/
 import loadReducer, * as selectorsIsLoading from './loadReducer/index';
 import infoReducer, * as selectorsInfo from './infoReducer/index';
 import btnListReducer, * as selectorsBtnList from './btnListReducer/index';
+import favoriteReducer, * as selectorsFavorite from './favoriteReducer/index';
 /* eslint-enable */
 
 const getCollections = state => selectorsCollections
@@ -20,17 +21,22 @@ export const getInfo = state => selectorsInfo
   .getInfo(state.info);
 
 export const getBtnList = (state) => {
-  const x = selectorsBtnList.getBtnList(state.btnList);
+  const buttonList = selectorsBtnList.getBtnList(state.btnList);
 
-  x.btnList.forEach((item) => {
-    // console.log(+item.innerHTML === x.btnText);
-
-    if (+item.innerHTML === x.btnText) {
+  buttonList.btnList.forEach((item) => {
+    if (+item.innerHTML === buttonList.btnText) {
       item.classList.add('active-btn');
     } else {
       item.classList.remove('active-btn');
     }
   });
+};
+
+export const getFavorite = (state) => {
+  const getAddLike = selectorsFavorite.getFavorite(state.favorite);
+  const addLike = new Set(getAddLike);
+
+  return [...addLike];
 };
 
 export const getCollection = createSelector(
@@ -51,6 +57,7 @@ const rootReducer = combineReducers({
   isLoading: loadReducer,
   info: infoReducer,
   btnList: btnListReducer,
+  favorite: favoriteReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(

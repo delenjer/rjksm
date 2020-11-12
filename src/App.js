@@ -14,8 +14,8 @@ const App = () => (
   <>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/:id/modal" component={PopupInfo} />
       <Route path="/favorite" component={Favorite} />
+      <Route path="/:id/modal" component={PopupInfo} />
       <Route path="/:id" component={Details} />
     </Switch>
 
