@@ -66,7 +66,6 @@ export const PopupInfo = () => {
                       <div className="popup__btn-box--wrapper">
                         <Link
                           to={`/${artObject.objectNumber}`}
-                          onClick={() => {}}
                           className="popup__btn popup__btn"
                         >
                           View more

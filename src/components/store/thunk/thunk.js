@@ -1,6 +1,6 @@
 import { getCollectionsPictures, getInfo } from '../../../api/api';
 import { setCollections } from '../collectionsReducer/actions';
-import { setInfo } from '../infoPopupReducer/actions';
+import { setInfo } from '../infoReducer/actions';
 import { setLoading } from '../loadReducer/actions';
 
 export const loadCollections = (currentPage, pageSize) => (dispatch) => {

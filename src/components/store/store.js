@@ -6,7 +6,8 @@ import thunk from 'redux-thunk';
 /*eslint-disable */
 import collectionsReducer, * as selectorsCollections from './collectionsReducer/index';
 import loadReducer, * as selectorsIsLoading from './loadReducer/index';
-import infoReducer, * as selectorsInfo from './infoPopupReducer/index';
+import infoReducer, * as selectorsInfo from './infoReducer/index';
+import btnListReducer, * as selectorsBtnList from './btnListReducer/index';
 /* eslint-enable */
 
 const getCollections = state => selectorsCollections
@@ -17,6 +18,20 @@ export const getLoading = state => selectorsIsLoading
 
 export const getInfo = state => selectorsInfo
   .getInfo(state.info);
+
+export const getBtnList = (state) => {
+  const x = selectorsBtnList.getBtnList(state.btnList);
+
+  x.btnList.forEach((item) => {
+    // console.log(+item.innerHTML === x.btnText);
+
+    if (+item.innerHTML === x.btnText) {
+      item.classList.add('active-btn');
+    } else {
+      item.classList.remove('active-btn');
+    }
+  });
+};
 
 export const getCollection = createSelector(
   [getCollections],
@@ -35,6 +50,7 @@ const rootReducer = combineReducers({
   collections: collectionsReducer,
   isLoading: loadReducer,
   info: infoReducer,
+  btnList: btnListReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(

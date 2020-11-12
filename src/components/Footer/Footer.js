@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import ReactPaginate from 'react-paginate';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setLoadItemsOnPage } from '../store/collectionsReducer/actions';
+import { setButtonList, setButtonText } from '../store/btnListReducer/actions';
+import * as selectors from '../store/store';
 
 export const Footer = (
   {
@@ -14,18 +16,14 @@ export const Footer = (
   },
 ) => {
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
+  const getBtnList = useSelector(state => selectors.getBtnList(state));
 
-  const btn = document.querySelectorAll('.load-item__btn');
+  useEffect(() => {
+    dispatch(setButtonList(document.querySelectorAll('.load-items__btn')));
+  }, []);
 
   const handleLoadItem = (e) => {
-    btn.forEach((item) => {
-      if (item === e.target) {
-        item.classList.add('active-btn');
-      } else {
-        item.classList.remove('active-btn');
-      }
-    });
-
     dispatch(setLoadItemsOnPage(+e.target.innerHTML));
   };
 
@@ -54,7 +52,10 @@ export const Footer = (
         <button
           type="button"
           className="load-items__btn active-btn"
-          onClick={handleLoadItem}
+          onClick={(e) => {
+            handleLoadItem(e);
+            dispatch(setButtonText(e.target.innerHTML));
+          }}
         >
           10
         </button>
@@ -62,7 +63,10 @@ export const Footer = (
         <button
           type="button"
           className="load-items__btn"
-          onClick={handleLoadItem}
+          onClick={(e) => {
+            handleLoadItem(e);
+            dispatch(setButtonText(e.target.innerHTML));
+          }}
         >
           50
         </button>
@@ -70,7 +74,10 @@ export const Footer = (
         <button
           type="button"
           className="load-items__btn"
-          onClick={handleLoadItem}
+          onClick={(e) => {
+            handleLoadItem(e);
+            dispatch(setButtonText(e.target.innerHTML));
+          }}
         >
           100
         </button>

@@ -7,6 +7,7 @@ import { setCurrentPage } from '../store/collectionsReducer/actions';
 
 import { CollectionList } from '../CollectionList/CollectionList';
 import { Footer } from '../Footer/Footer';
+import { Header } from '../Header/Header';
 
 export const Collections = () => {
   const collections = useSelector(state => selectors.getCollection(state));
@@ -16,7 +17,6 @@ export const Collections = () => {
   const currentPage = useSelector(state => state.collections.currentPage);
   const isLoading = useSelector(state => selectors.getLoading(state));
   const dispatch = useDispatch();
-
   const pagesCount = Math.ceil(totalPicturesCount / pageSize);
 
   const handlePageClick = (page) => {
@@ -31,9 +31,12 @@ export const Collections = () => {
     <>
       {
         !isLoading.isLoading ? (
-          <main className="wrapper">
-            <CollectionList {...collections} />
-          </main>
+          <>
+            <Header />
+            <main className="wrapper">
+              <CollectionList {...collections} />
+            </main>
+          </>
         ) : (
           <div className="loader">Loading...</div>
         )
