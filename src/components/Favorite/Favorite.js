@@ -23,6 +23,7 @@ export const Favorite = () => {
             .filter(item => favorite.includes(item.objectNumber))
             .map(favoriteItem => (
               <article
+                key={favoriteItem.objectNumber}
                 className="favorite"
               >
                 <h1 className="details__title favorite__title">
