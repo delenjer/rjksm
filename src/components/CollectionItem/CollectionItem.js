@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export const CollectionItem = ({ art }) => {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoadingImg, setLoadingImg] = useState(false);
   const highSrc = art.headerImage.url;
 
   useEffect(() => {
@@ -14,23 +14,32 @@ export const CollectionItem = ({ art }) => {
     const image = new Image();
 
     image.onload = () => {
-      setLoading(true);
+      setLoadingImg(true);
     };
 
     image.src = imageSrc;
   };
 
   return (
-    <Link
-      to={`/${art.objectNumber}/modal`}
-      className="collection__item"
-      style={isLoading
-        ? { backgroundImage: `url(${highSrc})` }
-        : { backgroundImage: `url(./img/unnamed.png)` }
+    <>
+      {
+        isLoadingImg ? (
+          <Link
+            to={`/${art.objectNumber}/modal`}
+            className="collection__item"
+            style={{ backgroundImage: `url(${highSrc})` }}
+          >
+            <p className="collection__text">{art.longTitle}</p>
+          </Link>
+        ) : (
+          <Link
+            to={`/${art.objectNumber}/modal`}
+            className="collection__item"
+            style={{ backgroundImage: `url(./img/unnamed.png)` }}
+          />
+        )
       }
-    >
-      <p className="collection__text">{art.longTitle}</p>
-    </Link>
+    </>
   );
 };
 
